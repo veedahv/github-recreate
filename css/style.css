@@ -1,8 +1,14 @@
+:root {
+    --dark-color: #24292e;
+    --light-text-color: #586069;
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    font-family: 'Montserrat', sans-serif;
     /* font-size: 10px; */
     /* border: .3px solid red; */
 }
@@ -11,23 +17,16 @@ body {
 input,
 button {
     border-radius: 5px;
-}
-header {
-    padding: 15px 30px;
-    background-color: #2c2c2c;
-    color: #ffffff;
-}
-header a {
-    padding: 5px 10px;
     display: inline-block;
-    color: #ffffff;
 }
-header input {
-    display: inline-block;
-    color: #ffffff;
-    border: .2px solid black;
-    background: transparent;
-    padding: 5px 10px;
+
+button {
+    /* border: none; */
+    /* box-shadow: 1px 1px 1px 1px rgba(68, 77, 86, 0.1); */
+    border: .1px solid rgba(68, 77, 86, 0.1);
+}
+input {
+    border: .1px solid #52565A;
 }
 ul {
     list-style: none;
@@ -38,13 +37,14 @@ p {
 a {
     text-decoration: none;
     display: inline-block;
+    color: #0366D6;
 }
 a:hover {    
-    color: var(--spare-color);
+    text-decoration: underline;
 }
 
 .container {
-    max-width: 1100px;
+    max-width: 1250px;
     margin: auto;
     padding: 10px 30px;
 }
@@ -61,32 +61,207 @@ a:hover {
 .w-100 {
     width: 100%;
 }
+header {
+    padding: 10px 30px;
+    background-color: #2c2c2c;
+    color: #ffffff;
+}
+header a {
+    padding: 5px;
+    display: inline-block;
+    color: #ffffff;
+}
+header input {
+    color: #ffffff;
+    background: transparent;
+    margin: auto 10px;
+    padding: 5px 10px;
+}
+header .userImg {
+    width: 25px;
+    height: 25px;
+}
 
 .desktop-nav {
     justify-content: space-between;
     align-items: center;
+}
+.desktop-nav .notification-contain,
+.desktop-nav .git-logo-contain {
+    align-items: center;
+}
+.dp-info-desktop {
+    align-items: center;
+}
+.desktop-nav .notification-contain .plus,
+.dp-info-desktop .userImg,
+.desktop-nav .notification-contain .bell {
+    margin-right: 10px;
+}
+
+.mobile-mini-nav {
+    display: none;
+}
+
+.mini-nav-desktop {
+    padding-top: 15px;
+    position: relative;
+    z-index: 1;
+    background-color: #ffffff;
+    box-shadow: 0 1px 1px rgba(68, 77, 86, 0.1);
+}
+.mini-nav-desktop.fixed {
+    top: 0;
+    width: 100%;
+    padding-top: 0px;
+    position: fixed;
+}
+.mini-nav-desktop .container {
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+.user-header {
+    visibility: hidden;
+}
+.user-header .userImg {
+    width: 40px;
+    height: 40px;
+}
+.mini-nav-desktop-flex {
+    align-items: center;
+}
+.username-info-contain {
+    position: relative;
+    z-index: -1;
+}
+.user-header {
+    flex-basis: 25%;
+}
+.mini-nav-desktop-flex .mini-nav {
+    flex-basis: 75%;
+}
+aside {
+    position: relative;
+    flex-basis: 25%;
+}
+.aside-absolute {
+    padding: 20px 10px;
+    position: absolute;
+    top: -70px;
+}
+main {
+    flex-basis: 75%;
+}
+.mini-nav li {
+    align-items: center;
+    padding: 12px 8px;
+    font-size: 14px;
+    color: var(--dark-color);
+}
+.mini-nav li svg {
+    font-size: 14px;
+    color: var(--light-text-color);
+}
+.mini-nav li.active svg {
+    color: var(--dark-color);
+}
+.mini-nav li.active {
+    border-bottom: 2px solid #F9826C;
+    font-weight: bolder;
+}
+.mini-nav li span {
+    padding: 5px 10px;
+    background-color: #E8EAEC;
+    border-radius: 20px;
+}
+
+.mini-nav li p,
+.mini-nav li svg {
+    margin-left: 7px;
+    margin-right: 7px;
 }
 
 .userImg {
     border-radius: 50%;
 }
 
-.repo-ul li {
-    padding: 25px 5px;
-    border-bottom: .05rem solid #333;
-    justify-content: space-between;
+.img-contain {
+    position: relative;
+    z-index: 3;
 }
-.repo-ul li .repo-name {
+.img-contain .userImg {
+    width: 100%;
+}
+
+.status-emoji-contain .smiley-btn {
+    border-radius: 20px;
+    border: none;
+    padding: 10px;
+    width: auto;
+    background-color: #ffffff;
+    position: absolute;
+    z-index: 5;
+    box-shadow: 0 1px 1px rgba(68, 77, 86, 0.2);
+    right: 0;
+    top: 60%;
+}
+.status-emoji-contain .smiley-btn .status {
+    display: none;
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 26px;
+}
+aside .user-name {
+    /* font-weight: 600; */
+    color: var(--dark-color);
+    /* font-size: 26px; */
+}
+aside .user-login {
+    color: var(--light-text-color);
     margin-bottom: 15px;
 }
 
+.repo-ul li {
+    padding: 25px 5px;
+    /* box-shadow: 0 1px 1px rgba(68, 77, 86, 0.1); */
+    border-bottom: .05rem solid rgba(68, 77, 86, 0.1);
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.repo-ul li a {
+    font-weight: 600;
+    font-size: 20px;
+}
+.repo-ul li button {
+    padding: 5px 8px;
+    font-weight: 500;
+}
+.lang-contain {
+    align-items: center;
+}
+.repo-ul li span {
+    color: #586069;
+    font-size: 12px;
+}
+.repo-ul li .repo-name {
+    margin-bottom: 12px;
+}
+.repo-ul li .repo-desc {
+    margin-bottom: 12px;
+}
+
 .lang-bg {
-    padding: 10px 18px;
+    padding: 6px;
     margin-right: 5px;
-    width: 10px;
+    width: 5px;
     height: 5px;
     border-radius: 50px;
     background-color: #333;
+}
+.lang-name {
+    margin-right: 5px;
 }
 
 footer ul.flex {
