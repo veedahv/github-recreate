@@ -5,22 +5,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+        <link rel="shortcut icon" href="./img/github-logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <title>My Github Repo</title>
 </head>
 
 <body>
     <header>
         <nav class="flex">
-            <!-- <div class="mobile-nav">
-                <div class="hamburger"></div>
-                <div class="git-logo-contain"></div>
-                <div class="notification-contain"></div>
-            </div> -->
-            <div class="desktop-nav w-100 flex">
+            <div class="mobile-nav-contain w-100">
+                <div class="mobile-nav w-100">
+                    <button class="hamburger">
+                        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24"
+                            aria-hidden="true">
+                            <path fill-rule="evenodd" fill="#ffffff"
+                                d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="git-logo-contain">
+                        <span>
+                            <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16"
+                                version="1.1" width="32" aria-hidden="true">
+
+                                <path fill-rule="evenodd" fill="#ffffff"
+                                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                                </path>
+                            </svg>
+                        </span>
+                    </div>
+                    <!-- <a target="_blank" href="https://icons8.com/icons/set/sort-down--v1">Sort Down icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
+                    <div class="notification-contain">
+                        <span class="bell">
+                            <svg class="octicon octicon-bell" viewBox="0 0 16 16" version="1.1" width="16" height="16"
+                                aria-hidden="true">
+                                <path fill="#ffffff"
+                                    d="M8 16a2 2 0 001.985-1.75c.017-.137-.097-.25-.235-.25h-3.5c-.138 0-.252.113-.235.25A2 2 0 008 16z">
+                                </path>
+                                <path fill-rule="evenodd" fill="#ffffff"
+                                    d="M8 1.5A3.5 3.5 0 004.5 5v2.947c0 .346-.102.683-.294.97l-1.703 2.556a.018.018 0 00-.003.01l.001.006c0 .002.002.004.004.006a.017.017 0 00.006.004l.007.001h10.964l.007-.001a.016.016 0 00.006-.004.016.016 0 00.004-.006l.001-.007a.017.017 0 00-.003-.01l-1.703-2.554a1.75 1.75 0 01-.294-.97V5A3.5 3.5 0 008 1.5zM3 5a5 5 0 0110 0v2.947c0 .05.015.098.042.139l1.703 2.555A1.518 1.518 0 0113.482 13H2.518a1.518 1.518 0 01-1.263-2.36l1.703-2.554A.25.25 0 003 7.947V5z">
+
+                                </path>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <ul>
+                        <li class="nav-li">
+                            <span class="search-input">
+                                <input type="text" name="" id="" class="search w-100" placeholder="Search or jump to...">
+                                <img src="./img/search-key-slash.svg" alt=""
+                                    class="mr-2 header-search-key-slash">
+                            </span>
+                        </li>
+                        <li class="nav-li">
+                            <a href="" class="nav-li-a">Dashboard</a>
+                        </li>
+                        <li class="nav-li">
+                            <a href="" class="nav-li-a">Pull requests</a>
+                        </li>
+                        <li class="nav-li">
+                            <a href="" class="nav-li-a">Issues</a>
+                        </li>
+                        <li class="nav-li">
+                            <a href="" class="nav-li-a">Marketplace</a>
+                        </li>
+                        <li class="nav-li">
+                            <a href="" class="nav-li-a">Explore</a>
+                        </li>
+                        <li class="nav-li">
+                            <a href="" class="nav-li-a">
+                            <div class="dp-info-desktop flex">
+                                    <img src="" class="userImg" alt="">
+                                    <p class="user-login"></p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-li">
+                            <a href="" class="flex nav-li-a">
+                            <svg class="octicon octicon-sign-out v-align-middle" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+                                <path fill-rule="evenodd" fill="#ffffff" d="M2 2.75C2 1.784 2.784 1 3.75 1h2.5a.75.75 0 010 1.5h-2.5a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h2.5a.75.75 0 010 1.5h-2.5A1.75 1.75 0 012 13.25V2.75zm10.44 4.5H6.75a.75.75 0 000 1.5h5.69l-1.97 1.97a.75.75 0 101.06 1.06l3.25-3.25a.75.75 0 000-1.06l-3.25-3.25a.75.75 0 10-1.06 1.06l1.97 1.97z"></path>
+                            </svg>
+                            <span class="sign-out">
+                                Sign out
+                            </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="desktop-nav mobile-none w-100">
                 <div class="git-logo-contain flex">
                     <span>
                         <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16"
@@ -31,14 +108,16 @@
                             </path>
                         </svg>
                     </span>
-                    <span>
-                        <input type="text" name="" id="" placeholder="Search or jump to...">
+                    <span class="search-input search-input-desk">
+                        <input type="text" name="" id="" class="search w-100" placeholder="Search or jump to...">
+                        <img src="./img/search-key-slash.svg" alt=""
+                            class="mr-2 header-search-key-slash">
                     </span>
                     <span>
-                        <a href="">Pull requests</a>
-                        <a href="">Issues</a>
-                        <a href="">Marketplace</a>
-                        <a href="">Explore</a>
+                        <a href="" class="nav-desk-li">Pull <span class="tablet-none">requests</span></a>
+                        <a href="" class="nav-desk-li">Issues</a>
+                        <a href="" class="nav-desk-li">Marketplace</a>
+                        <a href="" class="nav-desk-li">Explore</a>
                     </span>
 
                 </div>
@@ -55,22 +134,24 @@
                             </path>
                         </svg>
                     </span>
-                    <span class="plus">
+                    <span class="plus flex flex-img">
                         <svg class="octicon octicon-plus" viewBox="0 0 16 16" version="1.1" width="16" height="16"
                             aria-hidden="true">
                             <path fill-rule="evenodd" fill="#ffffff"
                                 d="M8 2a.75.75 0 01.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5A.75.75 0 018 2z">
                             </path>
                         </svg>
+                        <img src="./img/icons8-sort-down-24.png" alt="" class="drop-img">
                     </span>
-                    <span>
+                    <span class="flex flex-img header-user-img">
                         <img src="" class="userImg" alt="">
+                        <img src="./img/icons8-sort-down-24.png" alt="" class="drop-img">
                     </span>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="mini-nav-desktop">
+    <div class="mini-nav-desktop mobile-none">
         <div class="container">
             <div class="mini-nav-desktop-flex flex">
                 <div class="user-header">
@@ -98,6 +179,7 @@
                                 </path>
                             </svg>
                             <p>Repositories</p>
+                            <span class="repo-count">00</span>
                         </li>
                         <li class="flex">
                             <svg class="octicon octicon-project UnderlineNav-octicon hide-sm" height="16"
@@ -107,7 +189,6 @@
                                 </path>
                             </svg>
                             <p>Projects</p>
-                            <span class="repo-count">00</span>
                         </li>
                         <li class="flex">
                             <svg class="octicon octicon-package UnderlineNav-octicon hide-sm" height="16"
@@ -124,28 +205,13 @@
         </div>
     </div>
     <div class="flex container body-contain">
-        <aside>
+        <aside class="mobile-none">
             <div class="aside-absolute">
                 <div>
-                    <div class="dp-contain-mobile">
-                        <!-- <div class="dp-info-mobile flex">
-                            <img src="" class="userImg" alt="">
-                            <p>Victoria Akpan</p>
-                        </div> -->
-                        <!-- <button class="w-100 smiley-btn">
-                            <span><svg class="octicon octicon-smiley" viewBox="0 0 16 16" version="1.1" width="16"
-                                    height="16" aria-hidden="true">
-                                    <path fill-rule="evenodd"
-                                        d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z">
-                                    </path>
-                                </svg></span>
-                            <span>Set Status</span>
-                        </button> -->
-                    </div>
                     <div class="dp-contain img-contain">
                         <img src="" class="userImg" alt="">
                         <div class="status-emoji-contain">
-                            <button class="w-100 smiley-btn">
+                            <button class="w-100 smiley-btn flex">
                                 <span><svg class="octicon octicon-smiley" viewBox="0 0 16 16" version="1.1" width="16"
                                         height="16" aria-hidden="true">
                                         <path fill-rule="evenodd"
@@ -166,7 +232,34 @@
         </aside>
         <main class="w-100">
             <div class="mobile-mini-nav mini-nav">
-                <ul class="flex">
+                <div class="dp-contain-mobile">
+                    <div class="mobile-user-info">
+                        <div>
+                            <div class="dp-contain img-contain flex">
+                                <img src="" class="userImg" alt="">
+                                <div class="username-info-contain">
+                                    <p class="user-name"></p>
+                                    <p class="user-login"></p>
+                                </div>
+                            </div>
+                            <div class="status-emoji-contain">
+                                <button class="w-100 smiley-btn-mobile">
+                                    <svg class="octicon octicon-smiley" viewBox="0 0 16 16" version="1.1" width="16"
+                                        height="16" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z">
+                                        </path>
+                                    </svg>
+                                    <span class="">Set Status</span>
+                                </button>
+                            </div>
+                            <div class="username-info-contain">
+                                <p class="user-bio"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="flex mini-nav-ul">
                     <li class="flex">
                         <svg class="octicon octicon-book UnderlineNav-octicon hide-sm" height="16" viewBox="0 0 16 16"
                             version="1.1" width="16" aria-hidden="true">
@@ -184,6 +277,7 @@
                             </path>
                         </svg>
                         <p>Repositories</p>
+                        <span class="repo-count">00</span>
                     </li>
                     <li class="flex">
                         <svg class="octicon octicon-project UnderlineNav-octicon hide-sm" height="16"
@@ -193,7 +287,6 @@
                             </path>
                         </svg>
                         <p>Projects</p>
-                        <span class="repo-count">00</span>
                     </li>
                     <li class="flex">
                         <svg class="octicon octicon-package UnderlineNav-octicon hide-sm" height="16"
@@ -206,9 +299,12 @@
                     </li>
                 </ul>
             </div>
+            <div class="find-repo">
+                <input type="text" name="" class="w-100" id="" placeholder="Find a repository...">
+            </div>
             <div class="repo">
                 <ul class="repo-ul">
-                    <li class="flex">
+                    <!-- <li class="flex">
                         <div class="repo-info">
                             <h2 class="repo-name"><a href="">new repo</a></h2>
                             <p class="repo-desc"></p>
@@ -217,13 +313,28 @@
                                     <span class="lang-bg"></span>
                                     <span class="lang-name"></span>
                                 </span>
+                                <span class="star-contain flex">
+                                    <span class="">
+                                        <i class="fa fa-star-o"></i>
+                                    </span>
+                                    <span class="star-no"></span>
+                                </span>
+                                <span class="fork-contain flex">
+                                    <span class="">
+                                        <svg aria-label="fork" class="octicon octicon-repo-forked" viewBox="0 0 16 16" version="1.1" width="16" height="16" role="img">
+                                            <path fill-rule="evenodd" fill="#586069" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <span class="fork-no"></span>
+                                </span>
                                 <span class="update">
                                     Updated <span class="time"></span> ago
                                 </span>
                             </div>
                         </div>
                         <button class="star"><i class="fa fa-star-o"></i> Star</button>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </main>
@@ -231,6 +342,17 @@
     <footer>
         <div class="container">
             <ul class="flex">
+                <li class="footer-git-logo">
+                    <span>
+                        <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16"
+                            version="1.1" width="32" aria-hidden="true">
+
+                            <path fill-rule="evenodd" fill="#6a737d"
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                            </path>
+                        </svg>
+                    </span>
+                </li>
                 <li>
                     <div class="copyright">
                         <p>&#169; 2020 Github, Inc</p>

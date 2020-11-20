@@ -1,15 +1,19 @@
 
-
+//calling elements
 const repoUl = document.querySelector('.repo-ul');
+const hamburger = document.querySelector('.hamburger');
+const navDropdown = document.querySelector('.nav-dropdown');
 const userImgs = document.querySelectorAll('.userImg');
-const userName = document.querySelector('.user-name');
-const repoCount = document.querySelector('.repo-count');
+const userNames = document.querySelectorAll('.user-name');
+const repoCounts = document.querySelectorAll('.repo-count');
 const userLogins = document.querySelectorAll('.user-login');
-const userBio = document.querySelector('.user-bio');
+const userBios = document.querySelectorAll('.user-bio');
 const userUrlQl = `https://api.github.com/graphql`;
 
 
-function userInfoAll(infoTag, repoTag) {
+// functions
+// function to create new repo
+const userInfoAll = (infoTag, repoTag) => {
   console.log(infoTag);
   console.log(infoTag.login);
   console.log(infoTag.avatarUrl);
@@ -17,22 +21,35 @@ function userInfoAll(infoTag, repoTag) {
   console.log(repoTag.nodes[2].name);
   console.log('working');
   let repoNodes = repoTag.nodes.reverse();
-  userName.textContent = infoTag.name;
+  userNames.forEach(userName => {    
+    userName.textContent = infoTag.name;
+  });
+
   userLogins.forEach(userLogin => {    
     userLogin.textContent = infoTag.login;
   });
-  userBio.textContent = infoTag.bio;
+
+  userBios.forEach(userBio => {    
+    userBio.textContent = infoTag.bio;
+  });
   console.log(repoNodes);
   userImgs.forEach(userImg => {
     userImg.src = infoTag.avatarUrl;
   })
+
   let totalRepoCount = repoTag.totalCount;
   console.log(totalRepoCount)
-  repoCount.textContent = repoTag.totalCount;
+
+  repoCounts.forEach(repoCount => {    
+    repoCount.textContent = repoTag.totalCount;
+  });
+
   repoNodes.forEach(repoNode => {
     console.log(repoNode.name);  
     let repoName = repoNode.name;
     let repoDesc = repoNode.description;
+    let forkCount = repoNode.forkCount;
+    let starCount = repoNode.stargazerCount;
     let repoUpdate = repoNode.updatedAt;
     let repoDate = new Date(repoUpdate);
     let repoLang = repoNode.languages.nodes[0].name;
@@ -43,40 +60,177 @@ function userInfoAll(infoTag, repoTag) {
     console.log(repoDate.getMinutes());
     console.log(repoDate.getMonth());
     console.log(repoDate.getDate());
+    let dateCal = repoDate.getDate();
+    let month;
+    switch (repoDate.getMonth()) {
+      case 0:
+        month = 'Jan'
+        break;
+      case 1:
+        month = 'Feb'
+        break;
+      case 2:
+        month = 'Mar'
+        break;
+      case 3:
+        month = 'Apr'
+        break;
+      case 4:
+        month = 'May'
+        break;
+      case 5:
+        month = 'Jun'
+        break;
+      case 6:
+        month = 'Jul'
+        break;
+      case 7:
+        month = 'Aug'
+        break;
+        case 8:
+          month = 'Sep'
+        break;
+      case 9:
+        month = 'Oct'
+        break;
+      case 10:
+        month = 'Nov'
+        break;
+      case 10:
+        month = 'Dec'
+        break;
+        
+      default:
+        month = 'not'
+        break;
+    }
 
     const repoLi = `
     <li class="flex">
     <div class="repo-info">
         <h2 class="repo-name"><a href="">${repoName}</a></h2>
         <p class="repo-desc">${repoDesc}</p>
-        <div class="flex">
+        <div class="flex flex-wrap">
             <span class="lang-contain flex">
                 <span class="lang-bg" style="background-color: ${repoBg};"></span>
-                <span class="lang-name">${repoLang}</</span>
+                <span class="lang-name">${repoLang}</span>
+            </span>
+            <span class="star-contain flex">
+                <span class="">
+                    <i class="fa fa-star-o"></i>
+                </span>
+                <span class="star-no">${starCount}</span>
+            </span>
+            <span class="fork-contain flex">
+                <span class="">
+                    <svg aria-label="fork" class="octicon octicon-repo-forked" viewBox="0 0 16 16" version="1.1" width="16" height="16" role="img">
+                        <path fill-rule="evenodd" fill="#586069" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z">
+                        </path>
+                    </svg>
+                </span>
+                <span class="fork-no">${forkCount}</span>
             </span>
             <span class="update">
-                Updated <span class="time"></span>
+                Updated on <span class="time">${dateCal} ${month}</span>
             </span>
         </div>
     </div>
-    <button class="star"><i class="fa fa-star-o"></i> Star</button>
+    <button class="star flex"><i class="fa fa-star-o btn-star"></i> <span>Star</span></button>
 </li>
     `;
 
     repoUl.innerHTML += repoLi;  
   });
   let repoDescTxts = repoUl.querySelectorAll('.repo-desc');
+  let langContains = repoUl.querySelectorAll('.lang-contain');
+  let starContains = repoUl.querySelectorAll('.star-contain');
+  let forkContains = repoUl.querySelectorAll('.fork-contain');
   repoDescTxts.forEach(repoDescTxt => {
     console.log(repoDescTxt.innerHTML);    
-    if (repoDescTxt.innerHTML = 'null' ) {
+    if (repoDescTxt.innerHTML === 'null' ) {
       repoDescTxt.style.display = 'none'
     } else {
       repoDescTxt.style.display = 'inline-block'
       
     }
   });
+  // langContains.forEach(langContain => {
+  //   console.log(langContain.innerHTML);    
+  //   if (langContain.innerHTML === 'null ) {
+  //     langContain.style.display = 'none'
+  //   } else {
+  //     langContain.style.display = 'inline-block'
+      
+  //   }
+  // });
+
+  starContains.forEach(starContain => {
+    let starNo = starContain.querySelector('.star-no');
+    if (starNo.innerHTML === '0') {
+      starContain.style.display = 'none'
+    } else {
+      starContain.style.display = 'flex'
+      
+    }
+  });
+
+  forkContains.forEach(forkContain => {
+    let forkNo = forkContain.querySelector('.fork-no');
+    if (forkNo.innerHTML === '0') {
+      forkContain.style.display = 'none'
+    } else {
+      forkContain.style.display = 'flex'
+      
+    }
+  });
 
 }
+
+// functions to check if element is in viewport
+const isInViewport = (element, el) => {
+  const rect = element.getBoundingClientRect();
+  if (
+      rect.bottom >= 0 &&
+      rect.left >= 0 &&
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  ) {
+    el.classList.remove('fixed')
+  } else {
+    el.classList.add('fixed')
+  }
+}
+
+const isImgViewport = (element, el) => {
+  const rect = element.getBoundingClientRect();
+  if (
+      rect.bottom >= 0 &&
+      rect.left >= 0 &&
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  ) {
+    el.style.visibility = 'hidden'
+  } else {
+    el.style.visibility = 'visible'
+  }
+}
+
+// eventlisteners
+document.addEventListener('scroll', (event) => {
+  let headerTag = document.querySelector('header');
+  let mobileUserTag = document.querySelector('.mobile-user-info');
+  let userTag = document.querySelector('.user-header');
+  let navFixed = document.querySelector('.mini-nav-desktop');
+  let navFixedMobile = document.querySelector('.mini-nav-ul');
+  let navImgFixed = document.querySelector('.img-contain');
+  isInViewport(mobileUserTag, navFixedMobile);
+  isInViewport(headerTag, navFixed);
+  isImgViewport(navImgFixed, userTag);
+})
+
+hamburger.addEventListener('click', (event) => {
+  navDropdown.classList.toggle('display-dropdown')
+})
 
 fetch(userUrlQl, {
   method: 'POST',
@@ -100,7 +254,7 @@ fetch(userUrlQl, {
                 forkCount
                 stargazerCount
                 updatedAt
-                languages(first: 1) {
+                languages(first: 1,) {
                   nodes {
                     color
                     name
@@ -114,7 +268,6 @@ fetch(userUrlQl, {
   })
 }).then(
   function (response) {
-    console.log(response)
     return response.json();
   }
 ).then(
@@ -131,47 +284,4 @@ fetch(userUrlQl, {
     console.log(data.data.user.login)
     userInfoAll(infoTag, repoTag);
   }
-).catch(function (error) {
-  // errorMsg(error);
-})
-
-const isInViewport = (element, el) => {
-  const rect = element.getBoundingClientRect();
-  if (
-      rect.bottom >= 0 &&
-      rect.left >= 0 &&
-      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  ) {
-    console.log('ahh')
-    el.classList.remove('fixed')
-  } else {
-    console.log('nahh')
-    el.classList.add('fixed')
-  }
-}
-
-const isImgViewport = (element, el) => {
-  const rect = element.getBoundingClientRect();
-  if (
-      rect.bottom >= 0 &&
-      rect.left >= 0 &&
-      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  ) {
-    console.log('ahh')
-    el.style.visibility = 'hidden'
-  } else {
-    el.style.visibility = 'visible'
-    console.log('nahh')
-  }
-}
-
-document.addEventListener('scroll', (event) => {
-  let headerTag = document.querySelector('header');
-  let userTag = document.querySelector('.user-header');
-  let navFixed = document.querySelector('.mini-nav-desktop');
-  let navImgFixed = document.querySelector('.img-contain');
-  isInViewport(headerTag, navFixed);
-  isImgViewport(navImgFixed, userTag);
-})
+)
