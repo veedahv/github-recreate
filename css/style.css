@@ -12,6 +12,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+/* general styling */
 input,
 button {
     border-radius: 5px;
@@ -39,6 +40,7 @@ a:hover {
     text-decoration: underline;
 }
 
+/* utility classes */
 .container {
     max-width: 1250px;
     margin: auto;
@@ -57,6 +59,11 @@ a:hover {
 .w-100 {
     width: 100%;
 }
+.userImg {
+    border-radius: 50%;
+}
+
+/* header styling */
 header {
     padding: 12px 30px;
     background-color: #24292E;
@@ -123,6 +130,7 @@ header .userImg {
     margin-right: 8px;
 }
 
+/* body flex */
 .mobile-mini-nav {
     display: none;
 }
@@ -170,20 +178,6 @@ header .userImg {
 .mini-nav-desktop-flex .mini-nav {
     flex-basis: 75%;
 }
-aside {
-    position: relative;
-    flex-basis: 25%;
-    margin-right: 20px;
-}
-.aside-absolute {
-    padding: 35px 1px;
-    position: absolute;
-    top: -70px;
-    left: 0;
-}
-main {
-    flex-basis: 75%;
-}
 .mini-nav li {
     align-items: center;
     padding: 10px 8px;
@@ -209,8 +203,17 @@ main {
     margin-right: 6px;
 }
 
-.userImg {
-    border-radius: 50%;
+/* aside styling */
+aside {
+    position: relative;
+    flex-basis: 25%;
+    margin-right: 20px;
+}
+.aside-absolute {
+    padding: 35px 1px;
+    position: absolute;
+    top: -70px;
+    left: 0;
 }
 
 .img-contain {
@@ -256,6 +259,11 @@ main {
     fill: var(--link-color);
 }
 
+/* main styling */
+main {
+    flex-basis: 75%;
+}
+
 .user-name {
     font-weight: 600;
     font-size: 26px;
@@ -274,6 +282,7 @@ aside .user-login {
     border-bottom: .05rem solid rgba(68, 77, 86, 0.1);
 }
 
+/* repo styling */
 .repo-ul li {
     padding: 25px 5px;
     border-bottom: .05rem solid rgba(68, 77, 86, 0.1);
@@ -285,6 +294,7 @@ aside .user-login {
     font-size: 20px;
 }
 .repo-ul li button {
+    margin-top: 10px;
     padding: 5px 8px;
     font-weight: 500;
     margin-left: 20px;
@@ -300,13 +310,13 @@ aside .user-login {
 .lang-contain,
 .star-contain,
 .fork-contain {
-    margin-right: 9px;
+    margin-right: 12px;
 }
 .sign-out,
 .star-no,
 .fork-no,
 .lang-name {
-    margin-left: 3px;
+    margin-left: 4px;
 }
 .repo-ul li span {
     color: #586069;
@@ -325,6 +335,7 @@ aside .user-login {
     background-color: #333;
 }
 
+/* footer styling */
 footer {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -346,6 +357,7 @@ footer ul.flex li:last-of-type {
     padding-right: 0px;
 }
 
+/* tablet media query */
 @media (max-width: 800px) {
     .container {
         padding: 0px 15px;
@@ -360,6 +372,8 @@ footer ul.flex li:last-of-type {
         display: none;
     }
 }
+
+/* devices smaller than tablets */
 @media (max-width: 765px) {
     .body-contain.container {
         padding: 0px;
@@ -442,7 +456,7 @@ footer ul.flex li:last-of-type {
     .mobile-none {
         display: none;
     }
-    .status-emoji-contain .smiley-btn-mobile {
+    .smiley-btn-mobile {
         padding: 5px 10px;
         background: transparent;
         margin-bottom: 18px;
@@ -451,7 +465,7 @@ footer ul.flex li:last-of-type {
         justify-content: flex-start;
         color: var(--light-text-color);
     }
-    .status-emoji-contain .smiley-btn-mobile svg {
+    .smiley-btn-mobile svg {
         margin-right: 5px;
         fill: var(--light-text-color);
     }

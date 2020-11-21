@@ -13,8 +13,10 @@
 </head>
 
 <body>
-    <header>
+    <header class="header">
         <nav class="flex">
+
+            <!-- mobile nav starts -->
             <div class="mobile-nav-contain w-100">
                 <div class="mobile-nav w-100">
                     <button class="hamburger">
@@ -97,6 +99,9 @@
                     </ul>
                 </div>
             </div>
+            <!-- mobile nav end -->
+
+            <!-- desktop nav starts -->
             <div class="desktop-nav mobile-none w-100">
                 <div class="git-logo-contain flex">
                     <span>
@@ -149,8 +154,12 @@
                     </span>
                 </div>
             </div>
+            <!-- desktop nav ends -->
+
         </nav>
     </header>
+
+    <!-- desktop sticky nav starts -->
     <div class="mini-nav-desktop mobile-none">
         <div class="container">
             <div class="mini-nav-desktop-flex flex">
@@ -204,8 +213,12 @@
             </div>
         </div>
     </div>
+    <!-- desktop sticky nav ends -->
+
+    <!-- main body -->
     <div class="flex container body-contain">
-        <aside class="mobile-none">
+        <!-- account owner information desktop starts -->
+        <aside class="aside mobile-none">
             <div class="aside-absolute">
                 <div>
                     <div class="dp-contain img-contain">
@@ -230,7 +243,10 @@
                 </div>
             </div>
         </aside>
-        <main class="w-100">
+        <!-- account owner information desktop ends -->
+
+        <main class="main w-100">
+            <!-- mobile sticky nav starts -->
             <div class="mobile-mini-nav mini-nav">
                 <div class="dp-contain-mobile">
                     <div class="mobile-user-info">
@@ -299,42 +315,15 @@
                     </li>
                 </ul>
             </div>
+            <!-- mobile sticky nav ends -->
+
             <div class="find-repo">
                 <input type="text" name="" class="w-100" id="" placeholder="Find a repository...">
             </div>
+
+            <!-- Repositories container -->
             <div class="repo">
                 <ul class="repo-ul">
-                    <!-- <li class="flex">
-                        <div class="repo-info">
-                            <h2 class="repo-name"><a href="">new repo</a></h2>
-                            <p class="repo-desc"></p>
-                            <div class="flex">
-                                <span class="lang-contain flex">
-                                    <span class="lang-bg"></span>
-                                    <span class="lang-name"></span>
-                                </span>
-                                <span class="star-contain flex">
-                                    <span class="">
-                                        <i class="fa fa-star-o"></i>
-                                    </span>
-                                    <span class="star-no"></span>
-                                </span>
-                                <span class="fork-contain flex">
-                                    <span class="">
-                                        <svg aria-label="fork" class="octicon octicon-repo-forked" viewBox="0 0 16 16" version="1.1" width="16" height="16" role="img">
-                                            <path fill-rule="evenodd" fill="#586069" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z">
-                                            </path>
-                                        </svg>
-                                    </span>
-                                    <span class="fork-no"></span>
-                                </span>
-                                <span class="update">
-                                    Updated <span class="time"></span> ago
-                                </span>
-                            </div>
-                        </div>
-                        <button class="star"><i class="fa fa-star-o"></i> Star</button>
-                    </li> -->
                 </ul>
             </div>
         </main>

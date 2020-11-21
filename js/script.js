@@ -1,25 +1,98 @@
 
 //calling elements
-const repoUl = document.querySelector('.repo-ul');
-const hamburger = document.querySelector('.hamburger');
-const navDropdown = document.querySelector('.nav-dropdown');
-const userImgs = document.querySelectorAll('.userImg');
-const userNames = document.querySelectorAll('.user-name');
-const repoCounts = document.querySelectorAll('.repo-count');
-const userLogins = document.querySelectorAll('.user-login');
-const userBios = document.querySelectorAll('.user-bio');
-const userUrlQl = `https://api.github.com/graphql`;
+const repoUl = document.querySelector('.repo-ul'),
+ headerTag = document.querySelector('header'),
+ mobileUserTag = document.querySelector('.mobile-user-info'),
+ userTag = document.querySelector('.user-header'),
+ navFixed = document.querySelector('.mini-nav-desktop'),
+ navFixedMobile = document.querySelector('.mini-nav-ul'),
+ navImgFixed = document.querySelector('.img-contain'),
+ hamburger = document.querySelector('.hamburger'),
+ navDropdown = document.querySelector('.nav-dropdown'),
+ userImgs = document.querySelectorAll('.userImg'),
+ userNames = document.querySelectorAll('.user-name'),
+ repoCounts = document.querySelectorAll('.repo-count'),
+ userLogins = document.querySelectorAll('.user-login'),
+ userBios = document.querySelectorAll('.user-bio'),
+ userUrlQl = `https://api.github.com/graphql`;
+
+// insert token
+let token = '';
 
 
 // functions
+// function to check update time
+const updateTime = (date2, date1) => {
+  let timeDiff =(date2.getTime() - date1.getTime()) / 1000,
+   dateCal = date1.getDate(),
+   updatedOn,
+   month;
+  switch (date1.getMonth()) {
+    case 0:
+      month = 'Jan'
+      break;
+    case 1:
+      month = 'Feb'
+      break;
+    case 2:
+      month = 'Mar'
+      break;
+    case 3:
+      month = 'Apr'
+      break;
+    case 4:
+      month = 'May'
+      break;
+    case 5:
+      month = 'Jun'
+      break;
+    case 6:
+      month = 'Jul'
+      break;
+    case 7:
+      month = 'Aug'
+      break;
+      case 8:
+        month = 'Sep'
+      break;
+    case 9:
+      month = 'Oct'
+      break;
+    case 10:
+      month = 'Nov'
+      break;
+    case 10:
+      month = 'Dec'
+      break;
+      
+    default:
+      month = 'not'
+      break;
+  }
+  if (timeDiff < 60) {
+    updatedOn = 12345678
+  return 'a few seconds ago'; 
+} else if (timeDiff <= 60*60) {    
+  updatedOn = timeDiff / 60;
+  return Math.abs(Math.floor(updatedOn)) + 'minutes ago'; 
+  } else if (timeDiff <= 60*60*24) {    
+    updatedOn = timeDiff / 60 / 60;
+    return Math.abs(Math.floor(updatedOn)) + ' hours ago'; 
+  } else {    
+    updatedOn = timeDiff / 60 / 60 / 24;
+    if (Math.abs(Math.floor(updatedOn)) === 1) {
+      return 'yesterday';       
+    } else if (updatedOn <= 28) {
+      return Math.abs(Math.floor(updatedOn)) + ' days ago';       
+    } else {  
+      return 'on ' + dateCal + ' ' + month    
+    }
+  }  
+
+ }
+
 // function to create new repo
-const userInfoAll = (infoTag, repoTag) => {
-  console.log(infoTag);
-  console.log(infoTag.login);
-  console.log(infoTag.avatarUrl);
-  console.log(repoTag);
-  console.log(repoTag.nodes[2].name);
-  console.log('working');
+const newRepoTag = (infoTag, repoTag) => {
   let repoNodes = repoTag.nodes.reverse();
   userNames.forEach(userName => {    
     userName.textContent = infoTag.name;
@@ -32,78 +105,35 @@ const userInfoAll = (infoTag, repoTag) => {
   userBios.forEach(userBio => {    
     userBio.textContent = infoTag.bio;
   });
-  console.log(repoNodes);
+
   userImgs.forEach(userImg => {
     userImg.src = infoTag.avatarUrl;
   })
-
-  let totalRepoCount = repoTag.totalCount;
-  console.log(totalRepoCount)
 
   repoCounts.forEach(repoCount => {    
     repoCount.textContent = repoTag.totalCount;
   });
 
   repoNodes.forEach(repoNode => {
-    console.log(repoNode.name);  
-    let repoName = repoNode.name;
-    let repoDesc = repoNode.description;
-    let forkCount = repoNode.forkCount;
-    let starCount = repoNode.stargazerCount;
-    let repoUpdate = repoNode.updatedAt;
-    let repoDate = new Date(repoUpdate);
-    let repoLang = repoNode.languages.nodes[0].name;
-    let repoBg = repoNode.languages.nodes[0].color;
-    console.log(repoUpdate);
-    console.log(repoDate);
-    console.log(repoDate.toDateString());
-    console.log(repoDate.getMinutes());
-    console.log(repoDate.getMonth());
-    console.log(repoDate.getDate());
-    let dateCal = repoDate.getDate();
-    let month;
-    switch (repoDate.getMonth()) {
-      case 0:
-        month = 'Jan'
-        break;
-      case 1:
-        month = 'Feb'
-        break;
-      case 2:
-        month = 'Mar'
-        break;
-      case 3:
-        month = 'Apr'
-        break;
-      case 4:
-        month = 'May'
-        break;
-      case 5:
-        month = 'Jun'
-        break;
-      case 6:
-        month = 'Jul'
-        break;
-      case 7:
-        month = 'Aug'
-        break;
-        case 8:
-          month = 'Sep'
-        break;
-      case 9:
-        month = 'Oct'
-        break;
-      case 10:
-        month = 'Nov'
-        break;
-      case 10:
-        month = 'Dec'
-        break;
-        
-      default:
-        month = 'not'
-        break;
-    }
+    let repoName = repoNode.name,
+     repoDesc = repoNode.description,
+     forkCount = repoNode.forkCount,
+     starCount = repoNode.stargazerCount,
+     repoUpdate = repoNode.updatedAt,
+     repoDate = new Date(repoUpdate),
+     todayDate = new Date(),
+     repoLang,
+     repoBg;
+
+     if (repoNode.languages.nodes[0] !== undefined) {       
+        repoLang = repoNode.languages.nodes[0].name;
+        repoBg = repoNode.languages.nodes[0].color;
+      } else {
+         repoLang = 'null';
+         repoBg = '#fff';       
+     }
+// updateTime(todayDate, repoDate);
+let xTime = updateTime(todayDate, repoDate);
 
     const repoLi = `
     <li class="flex">
@@ -131,7 +161,7 @@ const userInfoAll = (infoTag, repoTag) => {
                 <span class="fork-no">${forkCount}</span>
             </span>
             <span class="update">
-                Updated on <span class="time">${dateCal} ${month}</span>
+                Updated <span class="time">${xTime}</span>
             </span>
         </div>
     </div>
@@ -146,7 +176,6 @@ const userInfoAll = (infoTag, repoTag) => {
   let starContains = repoUl.querySelectorAll('.star-contain');
   let forkContains = repoUl.querySelectorAll('.fork-contain');
   repoDescTxts.forEach(repoDescTxt => {
-    console.log(repoDescTxt.innerHTML);    
     if (repoDescTxt.innerHTML === 'null' ) {
       repoDescTxt.style.display = 'none'
     } else {
@@ -154,15 +183,15 @@ const userInfoAll = (infoTag, repoTag) => {
       
     }
   });
-  // langContains.forEach(langContain => {
-  //   console.log(langContain.innerHTML);    
-  //   if (langContain.innerHTML === 'null ) {
-  //     langContain.style.display = 'none'
-  //   } else {
-  //     langContain.style.display = 'inline-block'
+  langContains.forEach(langContain => {
+    let langName = langContain.querySelector('.lang-name');
+    if (langName.innerHTML === 'null' ) {
+      langContain.style.display = 'none'
+    } else {
+      langContain.style.display = 'flex'
       
-  //   }
-  // });
+    }
+  });
 
   starContains.forEach(starContain => {
     let starNo = starContain.querySelector('.star-no');
@@ -217,12 +246,6 @@ const isImgViewport = (element, el) => {
 
 // eventlisteners
 document.addEventListener('scroll', (event) => {
-  let headerTag = document.querySelector('header');
-  let mobileUserTag = document.querySelector('.mobile-user-info');
-  let userTag = document.querySelector('.user-header');
-  let navFixed = document.querySelector('.mini-nav-desktop');
-  let navFixedMobile = document.querySelector('.mini-nav-ul');
-  let navImgFixed = document.querySelector('.img-contain');
   isInViewport(mobileUserTag, navFixedMobile);
   isInViewport(headerTag, navFixed);
   isImgViewport(navImgFixed, userTag);
@@ -236,7 +259,7 @@ fetch(userUrlQl, {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "Authorization": "bearer ",
+    "Authorization": "bearer " + token,
   },
   body: JSON.stringify({
     query: `
@@ -267,21 +290,13 @@ fetch(userUrlQl, {
           `
   })
 }).then(
-  function (response) {
+   (response) => {
     return response.json();
   }
 ).then(
-  function (data) {
+   (data) => {
     let infoTag = data.data.user;
     let repoTag = data.data.user.repositories;
-    console.log(data.data.user)
-    console.log(data.data.user.repositories.nodes)
-    console.log(data.data.user.repositories.nodes[2])
-    console.log(data.data.user.repositories.nodes[2].name)
-    console.log(data.data.user.repositories.nodes[2].languages)
-    console.log(data.data.user.repositories.nodes[2].languages.nodes)
-    console.log(repoTag.nodes[2].name)
-    console.log(data.data.user.login)
-    userInfoAll(infoTag, repoTag);
+    newRepoTag(infoTag, repoTag);
   }
 )
