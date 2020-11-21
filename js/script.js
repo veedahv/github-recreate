@@ -71,7 +71,7 @@ const updateTime = (date2, date1) => {
   }
   if (timeDiff < 60) {
     updatedOn = 12345678
-  return 'a few seconds ago'; 
+  return 'in 1 minute'; 
 } else if (timeDiff <= 60*60) {    
   updatedOn = timeDiff / 60;
   return Math.abs(Math.floor(updatedOn)) + 'minutes ago'; 
@@ -136,7 +136,7 @@ const newRepoTag = (infoTag, repoTag) => {
 let xTime = updateTime(todayDate, repoDate);
 
     const repoLi = `
-    <li class="flex">
+    <li class="flex repo-li">
     <div class="repo-info">
         <h2 class="repo-name"><a href="">${repoName}</a></h2>
         <p class="repo-desc">${repoDesc}</p>
@@ -165,7 +165,7 @@ let xTime = updateTime(todayDate, repoDate);
             </span>
         </div>
     </div>
-    <button class="star flex"><i class="fa fa-star-o btn-star"></i> <span>Star</span></button>
+    <button class="star repo-btn flex"><i class="fa fa-star-o btn-star"></i> <span>Star</span></button>
 </li>
     `;
 

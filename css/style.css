@@ -64,7 +64,7 @@ a:hover {
 }
 
 /* header styling */
-header {
+.header {
     padding: 12px 30px;
     background-color: #24292E;
     color: #ffffff;
@@ -78,7 +78,7 @@ header {
 .nav-desk-li {
     padding: 8px;
 }
-header input {
+.search {
     border: .1px solid #52565A;
     position: relative;
     color: #ffffff;
@@ -101,7 +101,7 @@ header input {
     right: 20px;
     transform: translateY(-50%);
 }
-header .userImg {
+.header .userImg {
     width: 23px;
     height: 23px;
 }
@@ -283,17 +283,17 @@ aside .user-login {
 }
 
 /* repo styling */
-.repo-ul li {
+.repo-li {
     padding: 25px 5px;
     border-bottom: .05rem solid rgba(68, 77, 86, 0.1);
     justify-content: space-between;
     align-items: flex-start;
 }
-.repo-ul li a {
+.repo-li a {
     font-weight: 600;
     font-size: 20px;
 }
-.repo-ul li button {
+.repo-btn {
     margin-top: 10px;
     padding: 5px 8px;
     font-weight: 500;
@@ -318,12 +318,12 @@ aside .user-login {
 .lang-name {
     margin-left: 4px;
 }
-.repo-ul li span {
+.repo-li span {
     color: #586069;
     font-size: 12px;
 }
-.repo-ul li .repo-name,
-.repo-ul li .repo-desc {
+.repo-name,
+.repo-desc {
     margin-bottom: 12px;
 }
 
@@ -342,6 +342,8 @@ footer {
 }
 
 footer ul.flex {
+    padding-top: 20px;
+    border-top: 1px solid rgba(68, 77, 86, 0.1);
     text-align: center;
     justify-content: center;
     flex-wrap: wrap;
