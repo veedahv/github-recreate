@@ -118,6 +118,7 @@ const newRepoTag = (infoTag, repoTag) => {
      repoDesc = repoNode.description,
      forkCount = repoNode.forkCount,
      forkParent,
+     forkParentCount,
      starCount = repoNode.stargazerCount,
      repoUpdate = repoNode.updatedAt,
      repoDate = new Date(repoUpdate),
@@ -134,11 +135,14 @@ const newRepoTag = (infoTag, repoTag) => {
      }
      if (repoNode.parent !== null) {       
       forkParent = repoNode.parent.nameWithOwner;
+      forkParentCount = repoNode.parent.forkCount;
       } else {
         forkParent = 'null';
+        forkParentCount = 0;
      }
 // updateTime(todayDate, repoDate);
 let xTime = updateTime(todayDate, repoDate);
+let totalForkCount = forkParentCount + forkCount;
 
     const repoLi = `
     <li class="flex repo-li">
@@ -164,7 +168,7 @@ let xTime = updateTime(todayDate, repoDate);
                         </path>
                     </svg>
                 </span>
-                <span class="fork-no">${forkCount}</span>
+                <span class="fork-no">${totalForkCount}</span>
             </span>
             <span class="update">
                 Updated <span class="time">${xTime}</span>
@@ -301,6 +305,7 @@ fetch(userUrlQl, {
                 }
                 parent {
                   nameWithOwner
+                  forkCount
                 }  
               }
             }
@@ -316,6 +321,6 @@ fetch(userUrlQl, {
    (data) => {
     let infoTag = data.data.user;
     let repoTag = data.data.user.repositories;
-    newRepoTag(infoTag, repoTag);
+    newRepoTag(infoTag, repoTag);    
   }
 )
