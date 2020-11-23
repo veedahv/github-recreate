@@ -17,7 +17,7 @@ const repoUl = document.querySelector('.repo-ul'),
  userUrlQl = `https://api.github.com/graphql`;
 
 // insert token
-let token = '778481366638458938dbe6790b94505458d12d55';
+let token = '';
 
 
 // functions
