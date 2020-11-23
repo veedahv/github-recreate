@@ -70,11 +70,23 @@ a:hover {
     background-color: #24292E;
     color: #ffffff;
 }
+.header-hover {
+    fill: #ffffff;
+}
+.header-hover:hover {
+    fill-opacity: 0.7;
+    cursor: pointer;
+}
 .nav-desk-li,
 .nav-li-a {
     font-size: 14px;
     font-weight: 600;
     color: #ffffff;
+}
+.nav-desk-li:hover,
+.nav-li-a:hover {
+    filter: opacity(0.7);
+    text-decoration: none;
 }
 .nav-desk-li {
     padding: 8px;
