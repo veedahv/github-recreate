@@ -2,6 +2,7 @@
     --dark-color: #24292e;
     --light-text-color: #586069;
     --link-color: #0366D6;
+    --button-color: #F3F4F6;
 }
 
 * {
@@ -82,7 +83,7 @@ a:hover {
     border: .1px solid #52565A;
     position: relative;
     color: #ffffff;
-    font-size: 14px;
+    font-size: 13px;
 }
 .search::placeholder {
     color: #ffffff;
@@ -191,9 +192,9 @@ a:hover {
     border-bottom: 2px solid #F9826C;
     font-weight: 500;
 }
-.mini-nav li span {
+.repo-count {
     padding: 4px 8px;
-    background-color: #E8EAEC;
+    background-color:  var(--button-color);
     border-radius: 20px;
 }
 
@@ -225,7 +226,7 @@ aside {
     width: 100%;
 }
 
-.status-emoji-contain .smiley-btn {
+.smiley-btn {
     border-radius: 20px;
     align-items: center;
     padding: 10px;
@@ -239,20 +240,28 @@ aside {
     transition: all ease-in .4s;
     font-size: 12px;
 }
+
+.smiley-span {
+    height: 16px;
+}
+
 .smiley-btn svg {
     fill: var(--light-text-color);
 }
 .smiley-btn .status {
     display: none;
 }
+
 .smiley-btn:hover .status {
     display: inline;
     margin-left: 5px;
 }
+
 .smiley-btn:hover {
     cursor: pointer;
-    box-shadow: 0 1px 2px rgba(68, 77, 86, 0.2);
+    box-shadow: 0 2px 3px rgba(68, 77, 86, 0.3);
 }
+
 .smiley-btn:hover .status,
 .smiley-btn:hover svg {
     color: var(--link-color);
@@ -289,23 +298,38 @@ aside .user-login {
     justify-content: space-between;
     align-items: flex-start;
 }
-.repo-li a {
+.repo-name {
     font-weight: 600;
     font-size: 20px;
 }
 .repo-btn {
     margin-top: 10px;
-    padding: 5px 8px;
+    padding: 5px 12px;
     font-weight: 500;
     margin-left: 20px;
-    background-color: #E8EAEC;
+    background-color: var(--button-color);
     color: var(--dark-color);
 }
 
 .btn-star {
-    margin-right: 2px;
+    margin-right: 4px;
     color: var(--light-text-color);
     font-size: 16px;
+}
+.repo-desc,
+.parent-forked {
+    color: #586069;
+    margin-top: 10px;
+    font-size: 12px;
+}
+.parent-forked-name {
+    color: inherit;
+    font: inherit;
+}
+.repo-info-container {
+    color: #586069;
+    font-size: 12px;
+    margin-top: 13px;
 }
 .lang-contain,
 .star-contain,
@@ -317,14 +341,6 @@ aside .user-login {
 .fork-no,
 .lang-name {
     margin-left: 4px;
-}
-.repo-li span {
-    color: #586069;
-    font-size: 12px;
-}
-.repo-name,
-.repo-desc {
-    margin-bottom: 12px;
 }
 
 .lang-bg {

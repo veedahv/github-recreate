@@ -17,7 +17,7 @@ const repoUl = document.querySelector('.repo-ul'),
  userUrlQl = `https://api.github.com/graphql`;
 
 // insert token
-let token = '';
+let token = '778481366638458938dbe6790b94505458d12d55';
 
 
 // functions
@@ -70,20 +70,19 @@ const updateTime = (date2, date1) => {
       break;
   }
   if (timeDiff < 60) {
-    updatedOn = 12345678
   return 'in 1 minute'; 
 } else if (timeDiff <= 60*60) {    
   updatedOn = timeDiff / 60;
-  return Math.abs(Math.floor(updatedOn)) + 'minutes ago'; 
+  return Math.abs(Math.round(updatedOn)) + 'minutes ago'; 
   } else if (timeDiff <= 60*60*24) {    
     updatedOn = timeDiff / 60 / 60;
-    return Math.abs(Math.floor(updatedOn)) + ' hours ago'; 
+    return Math.abs(Math.round(updatedOn)) + ' hours ago'; 
   } else {    
     updatedOn = timeDiff / 60 / 60 / 24;
-    if (Math.abs(Math.floor(updatedOn)) === 1) {
+    if (Math.abs(Math.round(updatedOn)) === 1) {
       return 'yesterday';       
     } else if (updatedOn <= 28) {
-      return Math.abs(Math.floor(updatedOn)) + ' days ago';       
+      return Math.abs(Math.round(updatedOn)) + ' days ago';       
     } else {  
       return 'on ' + dateCal + ' ' + month    
     }
@@ -93,7 +92,7 @@ const updateTime = (date2, date1) => {
 
 // function to create new repo
 const newRepoTag = (infoTag, repoTag) => {
-  let repoNodes = repoTag.nodes.reverse();
+  let repoNodes = repoTag.nodes;
   userNames.forEach(userName => {    
     userName.textContent = infoTag.name;
   });
@@ -118,6 +117,7 @@ const newRepoTag = (infoTag, repoTag) => {
     let repoName = repoNode.name,
      repoDesc = repoNode.description,
      forkCount = repoNode.forkCount,
+     forkParent,
      starCount = repoNode.stargazerCount,
      repoUpdate = repoNode.updatedAt,
      repoDate = new Date(repoUpdate),
@@ -132,6 +132,11 @@ const newRepoTag = (infoTag, repoTag) => {
          repoLang = 'null';
          repoBg = '#fff';       
      }
+     if (repoNode.parent !== null) {       
+      forkParent = repoNode.parent.nameWithOwner;
+      } else {
+        forkParent = 'null';
+     }
 // updateTime(todayDate, repoDate);
 let xTime = updateTime(todayDate, repoDate);
 
@@ -139,8 +144,9 @@ let xTime = updateTime(todayDate, repoDate);
     <li class="flex repo-li">
     <div class="repo-info">
         <h2 class="repo-name"><a href="">${repoName}</a></h2>
-        <p class="repo-desc">${repoDesc}</p>
-        <div class="flex flex-wrap">
+        <small class="parent-forked">Forked from <a class="parent-forked-name">${forkParent}</a></small>        
+        <small class="repo-desc">${repoDesc}</small>
+        <div class="flex flex-wrap repo-info-container">
             <span class="lang-contain flex">
                 <span class="lang-bg" style="background-color: ${repoBg};"></span>
                 <span class="lang-name">${repoLang}</span>
@@ -171,21 +177,22 @@ let xTime = updateTime(todayDate, repoDate);
 
     repoUl.innerHTML += repoLi;  
   });
-  let repoDescTxts = repoUl.querySelectorAll('.repo-desc');
+  let repoDescriptions = repoUl.querySelectorAll('.repo-desc');
   let langContains = repoUl.querySelectorAll('.lang-contain');
   let starContains = repoUl.querySelectorAll('.star-contain');
   let forkContains = repoUl.querySelectorAll('.fork-contain');
-  repoDescTxts.forEach(repoDescTxt => {
-    if (repoDescTxt.innerHTML === 'null' ) {
-      repoDescTxt.style.display = 'none'
+  let parentForks = repoUl.querySelectorAll('.parent-forked');
+  repoDescriptions.forEach(repoDescription => {
+    if (repoDescription.innerText === 'null' ) {
+      repoDescription.style.display = 'none'
     } else {
-      repoDescTxt.style.display = 'inline-block'
+      repoDescription.style.display = 'inline-block'
       
     }
   });
   langContains.forEach(langContain => {
     let langName = langContain.querySelector('.lang-name');
-    if (langName.innerHTML === 'null' ) {
+    if (langName.innerText === 'null' ) {
       langContain.style.display = 'none'
     } else {
       langContain.style.display = 'flex'
@@ -195,7 +202,7 @@ let xTime = updateTime(todayDate, repoDate);
 
   starContains.forEach(starContain => {
     let starNo = starContain.querySelector('.star-no');
-    if (starNo.innerHTML === '0') {
+    if (starNo.innerText === '0') {
       starContain.style.display = 'none'
     } else {
       starContain.style.display = 'flex'
@@ -205,11 +212,20 @@ let xTime = updateTime(todayDate, repoDate);
 
   forkContains.forEach(forkContain => {
     let forkNo = forkContain.querySelector('.fork-no');
-    if (forkNo.innerHTML === '0') {
+    if (forkNo.innerText === '0') {
       forkContain.style.display = 'none'
     } else {
       forkContain.style.display = 'flex'
       
+    }
+  });
+
+  parentForks.forEach(parentFork => {
+    let parentName = parentFork.querySelector('.parent-forked-name');
+    if (parentName.innerText === 'null') {
+      parentFork.style.display = 'none';
+    } else {
+      parentFork.style.display = 'inline-block';      
     }
   });
 
@@ -269,7 +285,7 @@ fetch(userUrlQl, {
             avatarUrl
             name
             bio
-            repositories(last: 20) {
+            repositories(first: 20, orderBy: {field: PUSHED_AT, direction: DESC}) {
               totalCount
               nodes {
                 name
@@ -277,12 +293,15 @@ fetch(userUrlQl, {
                 forkCount
                 stargazerCount
                 updatedAt
-                languages(first: 1,) {
+                languages(first: 1, orderBy: {field: SIZE, direction: DESC}) {
                   nodes {
                     color
                     name
                   }
                 }
+                parent {
+                  nameWithOwner
+                }  
               }
             }
           }
