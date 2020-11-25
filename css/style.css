@@ -19,12 +19,14 @@ button {
     border-radius: 5px;
     display: inline-block;
     outline: none;
-    border: .1px solid rgba(68, 77, 86, 0.1);
+    border: 1px solid rgba(68, 77, 86, 0.1);
 }
-
 input {
     padding: 7px 10px;
     background: transparent;
+}
+button:hover {
+    cursor: pointer;
 }
 ul {
     list-style: none;
@@ -74,7 +76,7 @@ a:hover {
     fill: #ffffff;
 }
 .header-hover:hover {
-    fill-opacity: 0.7;
+    fill-opacity: 0.8;
     cursor: pointer;
 }
 .nav-desk-li,
@@ -85,7 +87,7 @@ a:hover {
 }
 .nav-desk-li:hover,
 .nav-li-a:hover {
-    filter: opacity(0.7);
+    filter: opacity(0.8);
     text-decoration: none;
 }
 .nav-desk-li {
@@ -163,10 +165,6 @@ a:hover {
     padding-top: 0px;
     position: fixed;
 }
-.mini-nav-desktop .container {
-    padding-bottom: 0px;
-    padding-top: 0px;
-}
 .user-header {
     visibility: hidden;
 }
@@ -197,6 +195,11 @@ a:hover {
     font-size: 14px;
     color: var(--dark-color);
 }
+.mini-nav li:hover {
+    cursor: pointer;
+    /* transform: translateY(1px); */
+    border-bottom: 2px solid rgba(68, 77, 86, 0.1);
+}
 .mini-nav li svg {
     font-size: 14px;
 }
@@ -205,9 +208,10 @@ a:hover {
     font-weight: 500;
 }
 .repo-count {
-    padding: 4px 8px;
+    padding: 2px 6px;
     background-color:  var(--button-color);
-    border-radius: 20px;
+    border-radius: 10px;
+    display: inline-block;
 }
 
 .mini-nav li p,
@@ -322,6 +326,9 @@ aside .user-login {
     background-color: var(--button-color);
     color: var(--dark-color);
 }
+.repo-btn:hover {
+    filter: contrast(95%);
+}
 
 .btn-star {
     margin-right: 4px;
@@ -365,25 +372,25 @@ aside .user-login {
 
 /* footer styling */
 footer {
-    padding-top: 20px;
+    padding-top: 30px;
     padding-bottom: 20px;
 }
 
-footer ul.flex {
+.footer-ul {
     padding-top: 20px;
     border-top: 1px solid rgba(68, 77, 86, 0.1);
     text-align: center;
     justify-content: center;
     flex-wrap: wrap;
 }
-footer ul.flex li {
+.footer-li {
     padding: 2px 22px;
     font-size: 12px;
 }
-footer ul.flex li:first-of-type {
+.footer-li:first-of-type {
     padding-left: 0px;
 }
-footer ul.flex li:last-of-type {
+.footer-li:last-of-type {
     padding-right: 0px;
 }
 
@@ -499,14 +506,14 @@ footer ul.flex li:last-of-type {
         margin-right: 5px;
         fill: var(--light-text-color);
     }
-    footer ul.flex li {
+    .footer-li {
         padding: 2px 16px;
         font-size: 12px;
     }
-    footer ul.flex li:first-of-type {
+    .footer-li:first-of-type {
         padding-left: 0px;
     }
-    footer ul.flex li:last-of-type {
+    .footer-li:last-of-type {
         padding-right: 0px;
     }
 }

@@ -17,11 +17,11 @@ const repoUl = document.querySelector('.repo-ul'),
  userUrlQl = `https://api.github.com/graphql`;
 
 // insert token
-let token = '';
+let token = '9d9ea5ed739d71c324b1790da015a245363e7827';
 
 
 // functions
-// function to check update time
+// function to get update time in minutes, hours, days and date
 const updateTime = (date2, date1) => {
   let timeDiff =(date2.getTime() - date1.getTime()) / 1000,
    dateCal = date1.getDate(),
