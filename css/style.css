@@ -221,7 +221,7 @@ a:hover {
 }
 
 /* aside styling */
-aside {
+.aside {
     position: relative;
     flex-basis: 25%;
     margin-right: 20px;
@@ -285,7 +285,7 @@ aside {
 }
 
 /* main styling */
-main {
+.main {
     flex-basis: 75%;
 }
 
@@ -293,10 +293,10 @@ main {
     font-weight: 600;
     font-size: 26px;
 }
-aside .user-name {
+.aside .user-name {
     color: var(--dark-color);
 }
-aside .user-login {
+.aside .user-login {
     color: var(--light-text-color);
     margin-bottom: 15px;
 }
@@ -399,7 +399,7 @@ footer {
     .container {
         padding: 0px 15px;
     }
-    header {
+    .header {
         padding: 12px 15px;
     }
     .tablet-none {
@@ -421,10 +421,7 @@ footer {
         padding-left: 15px;
         padding-right: 15px;
     }
-    header {
-        padding: 12px 15px;
-    }
-    main {
+    .main {
         flex-basis: 100%;
     }
     .hamburger {

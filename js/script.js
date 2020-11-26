@@ -1,5 +1,5 @@
 
-//calling elements
+//Calling Elements
 const repoUl = document.querySelector('.repo-ul'),
  headerTag = document.querySelector('header'),
  mobileUserTag = document.querySelector('.mobile-user-info'),
@@ -16,11 +16,11 @@ const repoUl = document.querySelector('.repo-ul'),
  userBios = document.querySelectorAll('.user-bio'),
  userUrlQl = `https://api.github.com/graphql`;
 
-// insert token
+// Insert Token
 let token = '';
 
-// functions
-// function to get repository update time in minutes, hours, days and date
+// Functions
+// Function to Get Repository Update Time in Minutes, Hours, Days and Date
 const updateTime = (date2, date1) => {
   let timeDiff =(date2.getTime() - date1.getTime()) / 1000,
    dateCal = date1.getDate(),
@@ -72,7 +72,7 @@ const updateTime = (date2, date1) => {
   return 'in 1 minute'; 
 } else if (timeDiff <= 60*60) {    
   updatedOn = timeDiff / 60;
-  return Math.abs(Math.round(updatedOn)) + 'minutes ago'; 
+  return Math.abs(Math.round(updatedOn)) + ' minutes ago'; 
   } else if (timeDiff <= 60*60*24) {    
     updatedOn = timeDiff / 60 / 60;
     return Math.abs(Math.round(updatedOn)) + ' hours ago'; 
@@ -89,7 +89,7 @@ const updateTime = (date2, date1) => {
 
  }
 
-// function to create new repo
+// Function to Create New Repo
 const newRepoTag = (infoTag, repoTag) => {
   let repoNodes = repoTag.nodes;
   userNames.forEach(userName => {    
@@ -139,8 +139,7 @@ const newRepoTag = (infoTag, repoTag) => {
         forkParent = 'null';
         forkParentCount = 0;
      }
-// updateTime(todayDate, repoDate);
-let xTime = updateTime(todayDate, repoDate);
+let update = updateTime(todayDate, repoDate);
 let totalForkCount = forkParentCount + forkCount;
 
     const repoLi = `
@@ -170,109 +169,81 @@ let totalForkCount = forkParentCount + forkCount;
                 <span class="fork-no">${totalForkCount}</span>
             </span>
             <span class="update">
-                Updated <span class="time">${xTime}</span>
+                Updated <span class="time">${update}</span>
             </span>
         </div>
     </div>
     <button class="star repo-btn flex"><i class="fa fa-star-o btn-star"></i> <span>Star</span></button>
 </li>
     `;
-
     repoUl.innerHTML += repoLi;  
   });
-  let repoDescriptions = repoUl.querySelectorAll('.repo-desc');
-  let langContains = repoUl.querySelectorAll('.lang-contain');
-  let starContains = repoUl.querySelectorAll('.star-contain');
-  let forkContains = repoUl.querySelectorAll('.fork-contain');
-  let parentForks = repoUl.querySelectorAll('.parent-forked');
+  let repoDescriptions = repoUl.querySelectorAll('.repo-desc'),
+   langContains = repoUl.querySelectorAll('.lang-contain'),
+   starContains = repoUl.querySelectorAll('.star-contain'),
+   forkContains = repoUl.querySelectorAll('.fork-contain'),
+   parentForks = repoUl.querySelectorAll('.parent-forked');
+
   repoDescriptions.forEach(repoDescription => {
-    if (repoDescription.innerText === 'null' ) {
-      repoDescription.style.display = 'none'
-    } else {
-      repoDescription.style.display = 'inline-block'
-      
-    }
+    repoDescription.innerText === 'null' ? repoDescription.style.display = 'none' : repoDescription.style.display = 'inline-block';
   });
   langContains.forEach(langContain => {
     let langName = langContain.querySelector('.lang-name');
-    if (langName.innerText === 'null' ) {
-      langContain.style.display = 'none'
-    } else {
-      langContain.style.display = 'flex'
-      
-    }
+    langName.innerText === 'null' ? langContain.style.display = 'none' : langContain.style.display = 'flex';
   });
 
   starContains.forEach(starContain => {
     let starNo = starContain.querySelector('.star-no');
-    if (starNo.innerText === '0') {
-      starContain.style.display = 'none'
-    } else {
-      starContain.style.display = 'flex'
-      
-    }
+    starNo.innerText === '0' ? starContain.style.display = 'none' : starContain.style.display = 'flex';
   });
 
   forkContains.forEach(forkContain => {
     let forkNo = forkContain.querySelector('.fork-no');
-    if (forkNo.innerText === '0') {
-      forkContain.style.display = 'none'
-    } else {
-      forkContain.style.display = 'flex'
-      
-    }
+    forkNo.innerText === '0' ? forkContain.style.display = 'none' : forkContain.style.display = 'flex';
   });
 
   parentForks.forEach(parentFork => {
     let parentName = parentFork.querySelector('.parent-forked-name');
-    if (parentName.innerText === 'null') {
-      parentFork.style.display = 'none';
-    } else {
-      parentFork.style.display = 'inline-block';      
-    }
+     parentName.innerText === 'null' ? parentFork.style.display = 'none' : parentFork.style.display = 'inline-block';      
   });
 
 }
 
-// functions to check if element is in viewport
 const isInViewport = (element, el) => {
   const rect = element.getBoundingClientRect();
-  if (
+   (
       rect.bottom >= 0 &&
       rect.left >= 0 &&
       rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
       rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  ) {
-    el.classList.remove('fixed')
-  } else {
-    el.classList.add('fixed')
-  }
+  ) ? el.classList.remove('fixed') : el.classList.add('fixed');
 }
 
-const isImgViewport = (element, el) => {
+const imgInViewport = (element, el) => {
   const rect = element.getBoundingClientRect();
-  if (
+   (
       rect.bottom >= 0 &&
       rect.left >= 0 &&
       rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
       rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  ) {
-    el.style.visibility = 'hidden'
-  } else {
-    el.style.visibility = 'visible'
-  }
+  ) ? el.style.visibility = 'hidden' : el.style.visibility = 'visible'
+  
 }
 
-// eventlisteners
-document.addEventListener('scroll', (event) => {
+const checkElViewport = () => {
   isInViewport(mobileUserTag, navFixedMobile);
   isInViewport(headerTag, navFixed);
-  isImgViewport(navImgFixed, userTag);
-})
+  imgInViewport(navImgFixed, userTag); 
+}
 
-hamburger.addEventListener('click', (event) => {
-  navDropdown.classList.toggle('display-dropdown')
-})
+const menuDropdown = () => {
+  navDropdown.classList.toggle('display-dropdown');  
+}
+
+// Event Listeners
+document.addEventListener('scroll', checkElViewport)
+
+hamburger.addEventListener('click', menuDropdown)
 
 fetch(userUrlQl, {
   method: 'POST',
