@@ -104,7 +104,7 @@ a:hover {
 }
 .search-input {
     position: relative;
-    width: 260px;
+    width: 290px;
 }
 .search-input-desk {
     padding-left: 10px;
@@ -189,6 +189,9 @@ a:hover {
 .mini-nav-desktop-flex .mini-nav {
     flex-basis: 75%;
 }
+.nav-ul {
+    align-items: flex-end;
+}
 .mini-nav li {
     align-items: center;
     padding: 10px 8px;
@@ -197,7 +200,6 @@ a:hover {
 }
 .mini-nav li:hover {
     cursor: pointer;
-    /* transform: translateY(1px); */
     border-bottom: 2px solid rgba(68, 77, 86, 0.1);
 }
 .mini-nav li svg {
@@ -327,7 +329,7 @@ a:hover {
     color: var(--dark-color);
 }
 .repo-btn:hover {
-    filter: contrast(95%);
+    filter: brightness(97%);
 }
 
 .btn-star {
