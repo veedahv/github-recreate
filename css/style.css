@@ -211,7 +211,7 @@ a:hover {
 }
 .repo-count {
     padding: 2px 6px;
-    background-color:  var(--button-color);
+    background-color:  #E8EAEC;
     border-radius: 10px;
     display: inline-block;
 }
@@ -314,17 +314,14 @@ a:hover {
     padding: 25px 5px;
     border-bottom: .05rem solid rgba(68, 77, 86, 0.1);
     justify-content: space-between;
-    align-items: flex-start;
 }
 .repo-name {
     font-weight: 600;
     font-size: 20px;
 }
 .repo-btn {
-    margin-top: 10px;
     padding: 5px 12px;
     font-weight: 500;
-    margin-left: 20px;
     background-color: var(--button-color);
     color: var(--dark-color);
 }

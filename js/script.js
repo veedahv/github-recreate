@@ -1,20 +1,20 @@
 
 //Calling Elements
 const repoUl = document.querySelector('.repo-ul'),
- headerTag = document.querySelector('header'),
- mobileUserTag = document.querySelector('.mobile-user-info'),
- userTag = document.querySelector('.user-header'),
- navFixed = document.querySelector('.mini-nav-desktop'),
- navFixedMobile = document.querySelector('.mini-nav-ul'),
- navImgFixed = document.querySelector('.img-contain'),
- hamburger = document.querySelector('.hamburger'),
- navDropdown = document.querySelector('.nav-dropdown'),
- userImgs = document.querySelectorAll('.userImg'),
- userNames = document.querySelectorAll('.user-name'),
- repoCounts = document.querySelectorAll('.repo-count'),
- userLogins = document.querySelectorAll('.user-login'),
- userBios = document.querySelectorAll('.user-bio'),
- userUrlQl = `https://api.github.com/graphql`;
+  headerTag = document.querySelector('header'),
+  mobileUserTag = document.querySelector('.mobile-user-info'),
+  userTag = document.querySelector('.user-header'),
+  navFixed = document.querySelector('.mini-nav-desktop'),
+  navFixedMobile = document.querySelector('.mini-nav-ul'),
+  navImgFixed = document.querySelector('.img-contain'),
+  hamburger = document.querySelector('.hamburger'),
+  navDropdown = document.querySelector('.nav-dropdown'),
+  userImgs = document.querySelectorAll('.userImg'),
+  userNames = document.querySelectorAll('.user-name'),
+  repoCounts = document.querySelectorAll('.repo-count'),
+  userLogins = document.querySelectorAll('.user-login'),
+  userBios = document.querySelectorAll('.user-bio'),
+  userUrlQl = `https://api.github.com/graphql`;
 
 // Insert Token
 let token = '';
@@ -22,10 +22,10 @@ let token = '';
 // Functions
 // Function to Get Repository Update Time in Minutes, Hours, Days and Date
 const updateTime = (date2, date1) => {
-  let timeDiff =(date2.getTime() - date1.getTime()) / 1000,
-   dateCal = date1.getDate(),
-   updatedOn,
-   month;
+  let timeDiff = (date2.getTime() - date1.getTime()) / 1000,
+    dateCal = date1.getDate(),
+    updatedOn,
+    month;
   switch (date1.getMonth()) {
     case 0:
       month = 'Jan'
@@ -51,8 +51,8 @@ const updateTime = (date2, date1) => {
     case 7:
       month = 'Aug'
       break;
-      case 8:
-        month = 'Sep'
+    case 8:
+      month = 'Sep'
       break;
     case 9:
       month = 'Oct'
@@ -63,44 +63,45 @@ const updateTime = (date2, date1) => {
     case 10:
       month = 'Dec'
       break;
-      
+
     default:
       month = 'not'
       break;
   }
   if (timeDiff < 60) {
-  return 'in 1 minute'; 
-} else if (timeDiff <= 60*60) {    
-  updatedOn = timeDiff / 60;
-  return Math.abs(Math.round(updatedOn)) + ' minutes ago'; 
-  } else if (timeDiff <= 60*60*24) {    
+    return 'in 1 minute';
+  } else if (timeDiff <= 60 * 60) {
+    updatedOn = timeDiff / 60;
+    return Math.abs(Math.round(updatedOn)) + ' minutes ago';
+  } else if (timeDiff <= 60 * 60 * 24) {
     updatedOn = timeDiff / 60 / 60;
-    return Math.abs(Math.round(updatedOn)) + ' hours ago'; 
-  } else {    
+    return Math.abs(Math.round(updatedOn)) + ' hours ago';
+  } else {
     updatedOn = timeDiff / 60 / 60 / 24;
     if (Math.abs(Math.round(updatedOn)) === 1) {
-      return 'yesterday';       
+      return 'yesterday';
     } else if (updatedOn <= 28) {
-      return Math.abs(Math.round(updatedOn)) + ' days ago';       
-    } else {  
-      return 'on ' + dateCal + ' ' + month    
+      return Math.abs(Math.round(updatedOn)) + ' days ago';
+    } else {
+      return 'on ' + dateCal + ' ' + month
     }
-  }  
+  }
 
- }
+}
+
 
 // Function to Create New Repo
 const newRepoTag = (infoTag, repoTag) => {
   let repoNodes = repoTag.nodes;
-  userNames.forEach(userName => {    
+  userNames.forEach(userName => {
     userName.textContent = infoTag.name;
   });
 
-  userLogins.forEach(userLogin => {    
+  userLogins.forEach(userLogin => {
     userLogin.textContent = infoTag.login;
   });
 
-  userBios.forEach(userBio => {    
+  userBios.forEach(userBio => {
     userBio.textContent = infoTag.bio;
   });
 
@@ -108,39 +109,39 @@ const newRepoTag = (infoTag, repoTag) => {
     userImg.src = infoTag.avatarUrl;
   })
 
-  repoCounts.forEach(repoCount => {    
+  repoCounts.forEach(repoCount => {
     repoCount.textContent = repoTag.totalCount;
   });
 
   repoNodes.forEach(repoNode => {
     let repoName = repoNode.name,
-     repoDesc = repoNode.description,
-     forkCount = repoNode.forkCount,
-     forkParent,
-     forkParentCount,
-     starCount = repoNode.stargazerCount,
-     repoUpdate = repoNode.updatedAt,
-     repoDate = new Date(repoUpdate),
-     todayDate = new Date(),
-     repoLang,
-     repoBg;
+      repoDesc = repoNode.description,
+      forkCount = repoNode.forkCount,
+      forkParent,
+      forkParentCount,
+      starCount = repoNode.stargazerCount,
+      repoUpdate = repoNode.updatedAt,
+      repoDate = new Date(repoUpdate),
+      todayDate = new Date(),
+      repoLang,
+      repoBg;
 
-     if (repoNode.languages.nodes[0] !== undefined) {       
-        repoLang = repoNode.languages.nodes[0].name;
-        repoBg = repoNode.languages.nodes[0].color;
-      } else {
-         repoLang = 'null';
-         repoBg = '#fff';       
-     }
-     if (repoNode.parent !== null) {       
+    if (repoNode.languages.nodes[0] !== undefined) {
+      repoLang = repoNode.languages.nodes[0].name;
+      repoBg = repoNode.languages.nodes[0].color;
+    } else {
+      repoLang = 'null';
+      repoBg = '#fff';
+    }
+    if (repoNode.parent !== null) {
       forkParent = repoNode.parent.nameWithOwner;
       forkParentCount = repoNode.parent.forkCount;
-      } else {
-        forkParent = 'null';
-        forkParentCount = 0;
-     }
-let update = updateTime(todayDate, repoDate);
-let totalForkCount = forkParentCount + forkCount;
+    } else {
+      forkParent = 'null';
+      forkParentCount = 0;
+    }
+    let update = updateTime(todayDate, repoDate);
+    let totalForkCount = forkParentCount + forkCount;
 
     const repoLi = `
     <li class="flex repo-li">
@@ -176,13 +177,13 @@ let totalForkCount = forkParentCount + forkCount;
     <button class="star repo-btn flex"><i class="fa fa-star-o btn-star"></i> <span>Star</span></button>
 </li>
     `;
-    repoUl.innerHTML += repoLi;  
+    repoUl.innerHTML += repoLi;
   });
   let repoDescriptions = repoUl.querySelectorAll('.repo-desc'),
-   langContains = repoUl.querySelectorAll('.lang-contain'),
-   starContains = repoUl.querySelectorAll('.star-contain'),
-   forkContains = repoUl.querySelectorAll('.fork-contain'),
-   parentForks = repoUl.querySelectorAll('.parent-forked');
+    langContains = repoUl.querySelectorAll('.lang-contain'),
+    starContains = repoUl.querySelectorAll('.star-contain'),
+    forkContains = repoUl.querySelectorAll('.fork-contain'),
+    parentForks = repoUl.querySelectorAll('.parent-forked');
 
   repoDescriptions.forEach(repoDescription => {
     repoDescription.innerText === 'null' ? repoDescription.style.display = 'none' : repoDescription.style.display = 'inline-block';
@@ -204,40 +205,40 @@ let totalForkCount = forkParentCount + forkCount;
 
   parentForks.forEach(parentFork => {
     let parentName = parentFork.querySelector('.parent-forked-name');
-     parentName.innerText === 'null' ? parentFork.style.display = 'none' : parentFork.style.display = 'inline-block';      
+    parentName.innerText === 'null' ? parentFork.style.display = 'none' : parentFork.style.display = 'inline-block';
   });
 
 }
 
 const isInViewport = (element, el) => {
   const rect = element.getBoundingClientRect();
-   (
-      rect.bottom >= 0 &&
-      rect.left >= 0 &&
-      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  (
+    rect.bottom >= 0 &&
+    rect.left >= 0 &&
+    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   ) ? el.classList.remove('fixed') : el.classList.add('fixed');
 }
 
 const imgInViewport = (element, el) => {
   const rect = element.getBoundingClientRect();
-   (
-      rect.bottom >= 0 &&
-      rect.left >= 0 &&
-      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  (
+    rect.bottom >= 0 &&
+    rect.left >= 0 &&
+    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   ) ? el.style.visibility = 'hidden' : el.style.visibility = 'visible'
-  
+
 }
 
 const checkElViewport = () => {
   isInViewport(mobileUserTag, navFixedMobile);
   isInViewport(headerTag, navFixed);
-  imgInViewport(navImgFixed, userTag); 
+  imgInViewport(navImgFixed, userTag);
 }
 
 const menuDropdown = () => {
-  navDropdown.classList.toggle('display-dropdown');  
+  navDropdown.classList.toggle('display-dropdown');
 }
 
 // Event Listeners
@@ -284,13 +285,13 @@ fetch(userUrlQl, {
           `
   })
 }).then(
-   (response) => {
+  (response) => {
     return response.json();
   }
 ).then(
-   (data) => {
+  (data) => {
     let infoTag = data.data.user;
     let repoTag = data.data.user.repositories;
-    newRepoTag(infoTag, repoTag);    
+    newRepoTag(infoTag, repoTag);
   }
 )
